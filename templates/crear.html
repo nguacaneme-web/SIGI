@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registrar incidente</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <header>
+
+            <h1>SIGI</h1>
+
+            <p>Registrar nuevo incidente</p>
+
+        </header>
+
+        <form method="POST">
+
+            <div class="campo">
+
+                <label>Fecha:</label>
+
+                <input type="date" name="fecha" required>
+
+            </div>
+
+            <div class="campo">
+
+                <label>Departamento:</label>
+
+                <input type="text" name="departamento" placeholder="Ej: Bogotá" required>
+
+            </div>
+
+            <div class="campo">
+
+                <label>Tipo de incidente:</label>
+
+                <input type="text" name="tipo_incidente" placeholder="Ej: Hurto" required>
+
+            </div>
+
+            <div class="campo">
+
+                <label>Lesionados:</label>
+
+                <input type="number" name="lesionados" min="0" value="0" required>
+
+            </div>
+
+            <div class="campo">
+
+                <label>Fatalidades:</label>
+
+                <input type="number" name="fatalidades" min="0" value="0" required>
+
+            </div>
+
+            <div class="campo">
+
+                <label>Causa:</label>
+
+                <textarea name="causa" placeholder="Descripción de la causa"></textarea>
+
+            </div>
+
+            <div class="campo">
+
+                <label>Nivel de riesgo:</label>
+
+                <select name="nivel_riesgo" required>
+
+                    <option value="">Seleccione...</option>
+
+                    <option value="Bajo">Bajo</option>
+                    <option value="Medio">Medio</option>
+                    <option value="Alto">Alto</option>
+                    <option value="Crítico">Crítico</option>
+
+                </select>
+
+            </div>
+
+            <div class="botones">
+
+                <button type="submit">
+                    Guardar incidente
+                </button>
+
+                <a href="{{ url_for('incidente_controller.listar') }}">
+                    Cancelar
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

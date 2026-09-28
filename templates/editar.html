@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Editar incidente</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <header>
+
+            <h1>SIGI</h1>
+
+            <p>Editar incidente #{{ incidente.id }}</p>
+
+        </header>
+
+        <form method="POST">
+
+            <div class="campo">
+
+                <label>Fecha:</label>
+
+                <input
+                    type="date"
+                    name="fecha"
+                    value="{{ incidente.fecha }}"
+                    required
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label>Departamento:</label>
+
+                <input
+                    type="text"
+                    name="departamento"
+                    value="{{ incidente.departamento }}"
+                    required
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label>Tipo de incidente:</label>
+
+                <input
+                    type="text"
+                    name="tipo_incidente"
+                    value="{{ incidente.tipo_incidente }}"
+                    required
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label>Lesionados:</label>
+
+                <input
+                    type="number"
+                    name="lesionados"
+                    min="0"
+                    value="{{ incidente.lesionados }}"
+                    required
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label>Fatalidades:</label>
+
+                <input
+                    type="number"
+                    name="fatalidades"
+                    min="0"
+                    value="{{ incidente.fatalidades }}"
+                    required
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label>Causa:</label>
+
+                <textarea name="causa">{{ incidente.causa }}</textarea>
+
+            </div>
+
+            <div class="campo">
+
+                <label>Nivel de riesgo:</label>
+
+                <select name="nivel_riesgo" required>
+
+                    <option value="Bajo"
+                        {% if incidente.nivel_riesgo == "Bajo" %}selected{% endif %}>
+                        Bajo
+                    </option>
+
+                    <option value="Medio"
+                        {% if incidente.nivel_riesgo == "Medio" %}selected{% endif %}>
+                        Medio
+                    </option>
+
+                    <option value="Alto"
+                        {% if incidente.nivel_riesgo == "Alto" %}selected{% endif %}>
+                        Alto
+                    </option>
+
+                    <option value="Crítico"
+                        {% if incidente.nivel_riesgo == "Crítico" %}selected{% endif %}>
+                        Crítico
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="botones">
+
+                <button type="submit">
+                    Actualizar incidente
+                </button>
+
+                <a href="{{ url_for('incidente_controller.listar') }}">
+                    Cancelar
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

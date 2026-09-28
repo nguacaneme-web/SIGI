@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SIGI - Incidentes</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <header>
+            <h1>SIGI</h1>
+            <p>Sistema de Gestión de Incidentes</p>
+        </header>
+
+       <div class="acciones">
+
+    <a href="{{ url_for('incidente_controller.crear') }}" class="boton">
+        + Registrar incidente
+    </a>
+
+    <a href="{{ url_for('incidente_controller.dashboard') }}" class="boton">
+        📊 Ver dashboard
+    </a>
+
+</div>
+
+        <section>
+
+            <h2>Incidentes registrados</h2>
+
+            {% if incidentes %}
+
+            <div class="tabla-contenedor">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Fecha</th>
+                            <th>Departamento</th>
+                            <th>Tipo de incidente</th>
+                            <th>Lesionados</th>
+                            <th>Fatalidades</th>
+                            <th>Causa</th>
+                            <th>Riesgo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for incidente in incidentes %}
+
+                        <tr>
+
+                            <td>{{ incidente.id }}</td>
+
+                            <td>{{ incidente.fecha }}</td>
+
+                            <td>{{ incidente.departamento }}</td>
+
+                            <td>{{ incidente.tipo_incidente }}</td>
+
+                            <td>{{ incidente.lesionados }}</td>
+
+                            <td>{{ incidente.fatalidades }}</td>
+
+                            <td>{{ incidente.causa }}</td>
+
+                            <td>{{ incidente.nivel_riesgo }}</td>
+
+                            <td>
+
+                                <a href="{{ url_for('incidente_controller.editar', id=incidente.id) }}">
+                                    Editar
+                                </a>
+
+                                <a href="{{ url_for('incidente_controller.eliminar', id=incidente.id) }}"
+                                   onclick="return confirm('¿Está seguro de eliminar este incidente?');">
+                                    Eliminar
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            {% else %}
+
+            <p class="sin-registros">
+                No existen incidentes registrados.
+            </p>
+
+            {% endif %}
+
+        </section>
+
+    </div>
+
+</body>
+
+</html>

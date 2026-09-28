@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SIGI - Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <header>
+
+            <h1>SIGI</h1>
+
+            <p>Dashboard de incidentes de seguridad</p>
+
+        </header>
+
+        <div class="acciones">
+
+            <a href="{{ url_for('incidente_controller.listar') }}"
+               class="boton">
+                ← Volver a incidentes
+            </a>
+
+        </div>
+
+
+        <h2>Resumen general</h2>
+
+
+        <div class="estadisticas">
+
+            <div class="tarjeta">
+
+                <h3>Total de incidentes</h3>
+
+                <strong>
+                    {{ estadisticas.total_incidentes }}
+                </strong>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Total de lesionados</h3>
+
+                <strong>
+                    {{ estadisticas.total_lesionados }}
+                </strong>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Total de fatalidades</h3>
+
+                <strong>
+                    {{ estadisticas.total_fatalidades }}
+                </strong>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Riesgo crítico</h3>
+
+                <strong>
+                    {{ estadisticas.riesgo_critico }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <section class="tabla-contenedor">
+
+            <h2>Incidentes por departamento</h2>
+
+            {% if departamentos %}
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Departamento</th>
+
+                        <th>Cantidad de incidentes</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for departamento, cantidad in departamentos %}
+
+                    <tr>
+
+                        <td>{{ departamento }}</td>
+
+                        <td>{{ cantidad }}</td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+
+            <p>No existen datos para mostrar.</p>
+
+            {% endif %}
+
+        </section>
+
+    </div>
+
+</body>
+
+</html>
